@@ -1,0 +1,145 @@
+\documentclass{dissertation}
+\newcommand{\showcover}{1} % 0 or 1
+% \documentclass[print]{dissertation}
+%\documentclass[print,draft]{dissertation}
+
+\usepackage{natbib}
+\setcitestyle{authoryear}
+
+\usepackage{pdfpages}
+
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{xspace}
+\usepackage{array}
+\usepackage{pifont}
+% \usepackage{bbding}
+\usepackage{hyperref}
+
+\usepackage{setspace}
+\usepackage{rotating}
+
+\usepackage{lipsum}
+
+
+% \hypersetup{
+%   colorlinks=true,
+%   linkcolor=blue,   % for normal links (sections, etc.)
+%   citecolor=blue,   % for citations
+%   urlcolor=blue     % for URLs
+% }
+
+
+%##################################################
+
+
+\hyphenation{TestRoots WatchDog proj-ect proj-ects Ec-lipse two-fold clie-nts Mo-cki-to wide-spread}
+\newcommand{\sparkline}[1]{$\vcenter{\hbox{\includegraphics[scale=0.04]{#1}}}$}
+
+% \makeglossaries
+
+\newcommand*{\origrightarrow}{}
+\let\oldarrow\textrightarrow
+\renewcommand*{\textrightarrow}{\fontfamily{cmr}\selectfont\origrightarrow}
+\loadglsentries[main]{glossary}
+
+\input{abbreviations}
+
+
+
+
+\begin{document}
+\ifnum\showcover=1
+    \includepdf[pages=1]{cover-front-back.pdf}
+\fi
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5\baselineskip}
+
+%% Specify the title and author of the thesis. This information will be used on
+%% the title page (in title/title.tex) and in the metadata of the final PDF.
+\title[for Automated Driving and Simulators]{Motion Perception and Sickness Modelling and Prediction}
+% \subtitle{}
+\author{Varun}{Kotian}
+
+%% Use Roman numerals for the page numbers of the title pages and table of
+%% contents.
+\frontmatter
+
+\include{title/title}
+
+%% The (optional) dedication can be used to thank someone or display a
+%% significant quotation.
+\dedication{\epigraph{Knowledge and awareness are vague, and perhaps better called illusions.\\
+Everyone lives within their own subjective interpretation.
+  }{Itachi Uchiha}}
+
+% \begin{spacing}{0.1}
+\tableofcontents
+% \end{spacing}
+
+\include{summary/summary}
+
+%% Use Arabic numerals for the page numbers of the chapters.
+\mainmatter
+
+%% Turn on thumb indices.
+\thumbtrue
+
+\include{introduction/introduction}
+\include{chapter2/chapter2}
+\include{chapter3/chapter3}
+\include{chapter4/chapter4}
+\include{chapter5/chapter5}
+\include{discussion/discussion}
+
+
+%% Turn off thumb indices for unnumbered chapters.
+\thumbfalse
+
+\chapter*{Bibliography}
+\addcontentsline{toc}{chapter}{Bibliography}
+\setheader{Bibliography}
+
+% URLs in this thesis have been archived on Archive.org. Their link target in digital editions refers
+% to this timestamped version.
+
+\bibliographystyle{apalike}
+% argument is your BibTeX string definitions and bibliography database(s)
+\renewcommand{\bibname}{}
+\bibliography{dissertation}
+
+\appendix
+\include{appendix/appendix-chapter2}
+\include{appendix/appendix-chapter3}
+\include{appendix/appendix-chapter4}
+\include{appendix/appendix-chapter5}
+
+% \chapter*{Glossary}
+
+\glsaddall
+\printglossary[type=\acronymtype,title={Glossary}]
+\addcontentsline{toc}{chapter}{Glossary}
+\setheader{Glossary}
+
+\include{cv/cv}
+\include{publications/publications}
+
+\include{acks/acks}
+
+\include{propositions}
+% \include{propositions}
+% \include{ipa/ipadissertations_2018}
+% \cleardoublepage
+% \addcontentsline{toc}{chapter}{Propositions}
+% \includepdf[pages=-]{propositions.pdf}
+
+% \clearpage
+\cleardoublepage
+% \ifodd\value{page}\hbox{}\newpage\fi
+\ifnum\showcover=1
+    \mbox{} \thispagestyle{empty} \newpage 
+    \includepdf[pages=2]{cover-front-back.pdf}
+\fi
+\end{document}
+
+

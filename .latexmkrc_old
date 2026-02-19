@@ -1,0 +1,21 @@
+# .latexmkrc — build propositions.pdf before dissertation.pdf (XeLaTeX)
+
+# Use XeLaTeX for the normal latexmk runs:
+$pdflatex = 'xelatex -interaction=nonstopmode %O %S';
+
+# Ensure Overleaf treats dissertation.tex as the "main" build target
+$root_filename = 'dissertation.tex';
+
+# --- Prebuild propositions (but avoid recursion) ---
+unless (exists $ENV{'LATEXMK_PROPOSITIONS_DONE'}) {
+    # set env var so a child latexmk doesn't re-run this block
+    $ENV{'LATEXMK_PROPOSITIONS_DONE'} = 1;
+
+    print "=== Prebuilding propositions.tex (latexmk -xelatex) ===\n";
+
+    # Run latexmk on propositions; capture output for debugging
+    system("latexmk -xelatex -interaction=nonstopmode propositions_standalone > propositions-build.log 2>&1");
+
+    # (optional) run a second time if you know propositions needs multiple runs:
+    # system("latexmk -xelatex -interaction=nonstopmode propositions >> propositions-build.log 2>&1");
+}

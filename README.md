@@ -1,4 +1,4 @@
-# Improved TU Eindhoven PhD Thesis Template
+# TU Eindhoven PhD Thesis Template
 
 This is an adapted version of the [TU Delft PhD thesis
 template](https://github.com/varunkotian/TU-Delft-PhD-Dissertation-Template.git) by Varun Kotian for TU Eindhoven. It
